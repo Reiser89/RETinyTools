@@ -1,0 +1,12 @@
+General Notes:
+
+Calculation base:
+
+Offset = VA - Imagebase - Virtual Offset + Raw Offset
+VA = Offset + Imagebase + Virtual Offset - Raw Offset
+
+Imagebase-std: 0x400000
+
+VA = Address in Mem
+
+RVA = VA - Imagebase

@@ -1,0 +1,10 @@
+
+*.7z
+
+\.vs/
+
+x64/
+
+RETT/ico/
+
+RETT/Debug/
