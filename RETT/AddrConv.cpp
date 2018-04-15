@@ -77,4 +77,126 @@ namespace RETT {
 		}
 		return false;
 	}
+
+	std::vector<Byte> getHexFromString(String^ input)
+	{
+		std::vector<Byte> hex;
+
+		if (input->Length < 3)
+			return hex;
+
+		input = input->Substring(2); // Cut off 0x
+
+		size_t len = input->Length;
+		len = len / 2 + (1 * len % 2); // add 1 more element if odd
+		hex.resize(len);
+
+		Char c;
+		int pos;
+		Byte tmp;
+		short odd = input->Length % 2; // Importaint on odd hex-values like: 0x123 (to not get 0x1230)
+		for (int i = 0; i < input->Length; i++)
+		{
+			c = input[i];
+			pos = i + odd; // Store 2 converted chars in one byte, adds 1 if odd strlen
+			pos -= pos % 2; // -1 if odd
+			pos /= 2;
+
+			// From ascii-able:
+			// 0 - 9 = 48...57  -> -48
+			// A - F = 65...70  -> -54
+			// a - f = 97...102 -> -86
+			tmp = c;
+			tmp -= c > 96 ? 86 : (c > 64 ? 54 : 48);
+			hex[pos] = (i + odd) % 2 ? hex[pos] : tmp;
+			hex[pos] += (i + odd) % 2 ? 0x10 * tmp : 0;
+			//retval += String::Format("{0:X}", input[i]);
+		}
+
+		return hex;
+	}
+
+	String^ getStringFromHex(std::vector<Byte> input)
+	{
+		String^ retval = nullptr;
+
+		Char c;
+		int pos;
+		Byte tmp;
+		bool first = true;
+		for each (Byte hx in input) {
+			for (int pos = 0; pos < 2; pos++)
+			{
+				c = pos == 0 ? (hx & 0x0F) : ((hx & 0xF0) / 0x10);
+				// From ascii-able:
+				// 0 - 9 = 48...57  -> +48
+				// A - F = 65...70  -> +54
+				c += c > 9 ? 54 : 48;
+
+				// Do not add leading zero:
+				retval += (!first || c != 48) ? String::Format("{0}", c) : "";
+				first = false;
+			}
+		}
+
+		return "0x" + retval;
+	}
+
+	String^ AddrConv::convRVA(String^ input)
+	{
+		//String^ retval = nullptr;
+		//for each (Char ch in input) {
+		//	array<Byte>^ bytes = BitConverter::GetBytes(ch);
+		//	//array<Byte>^ bytes = BitConverter::GetBytes;
+		//	//retval += String::Format("{0:X2} {1:X2} ", bytes[1], bytes[0]);
+		//	retval += String::Format("{1:X2}", bytes[0]);
+		//}
+		//return retval;
+
+
+		//double hex;
+		String^ input2 = input;
+
+		String^ retval = nullptr;
+		for each (Char ch in input) {
+			array<Byte>^ bytes = BitConverter::GetBytes(ch);
+			//	retval += String::Format("{0:X}", ch);
+		}
+		//textBoxVA->Text = retval;
+
+		//array<Byte>^ bytes = { 0x0,0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9,0xa,0xb,0xc,0xd,0xe,0xf };
+		//array<Byte>^ bytes = { 0x11,0x22,0x33,0x44 };
+		//for each (Char ch in bytes) {
+		//for (int i = 0; (Char ch in hexFrom) {
+		//retval += String::Format("{0:X}", ch);
+		//retval += String::Format("{0}", ch);
+		//}
+
+		//std::vector<Byte> hex; // Technically we only use 4 bit
+
+		//for (int i = 0; i < input->Length; i++)
+		//{
+		//	retval += String::Format("{0:X}", input[i]);
+		//}
+		//for each (Char ch in input) {
+
+		//	//retval += String::Format("{0:X}", ch);
+		//	//retval += String::Format("{0}", ch);
+		//}
+
+		std::vector<Byte> hex = getHexFromString(input);
+		retval = getStringFromHex(hex);
+
+		//wchar_t buf[19];
+		//swprintf_s(buf, 19, L"0x%16llx", hex[0]);
+		//MessageBox(0, buf, L"Wrapper", 0);
+
+
+		return retval;
+	}
+
+	String^ AddrConv::convVA(String^ input)
+	{
+		return "";
+	}
 }

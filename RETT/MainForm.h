@@ -180,7 +180,7 @@ namespace RETT {
 				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 				this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 				this->Name = L"MainForm";
-				this->Text = L"RE Tiny Tools";
+				this->Text = L"RE Tiny Tools - (c) 2018, Reiser";
 				this->groupBox1->ResumeLayout(false);
 				this->groupBox1->PerformLayout();
 				this->ResumeLayout(false);
@@ -215,7 +215,7 @@ namespace RETT {
 		}
 		private: System::Void textBoxVA_TextChanged(System::Object^  sender, System::EventArgs^  e)
 		{
-			AddrConv::textFieldHexTextChanged(this->textBoxVA);
+			//AddrConv::textFieldHexTextChanged(this->textBoxVA);
 			this->buttonConvVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
@@ -234,8 +234,8 @@ namespace RETT {
 		}
 		private: System::Void textBoxVA_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
-			this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxVA) &&
-				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
+			//this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxVA) &&
+			//	AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
 		private: System::Void textBoxRVA_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
@@ -256,7 +256,7 @@ namespace RETT {
 		}
 		private: System::Void buttonConvVA_Click(System::Object^  sender, System::EventArgs^  e)
 		{
-
+			textBoxVA->Text = AddrConv::convRVA(textBoxImagebase->Text);
 		}
 		private: System::Void buttonConvRVA_Click(System::Object^  sender, System::EventArgs^  e)
 		{
