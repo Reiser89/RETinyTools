@@ -14,8 +14,8 @@ namespace RETT {
 		static bool validateOnLeaveHexTextField(String^ &input); // Will be called on leaving the TextField to final check the correct hex-format (it will add 0x if not exists on beginning)
 		static bool textFieldHexLeave(System::Windows::Forms::TextBox ^textBox); // Handles Hex-TextBox on leave
 		static bool textFieldHexTextChanged(System::Windows::Forms::TextBox ^textBox); // Handles Hex-TextBox on TextChange
-		static String^ convRVA(String^ input); // Converts hex in form of a String from VA+BaseAddr to RVA
-		static String^ convVA(String^ input); // Converts hex in form of a String from RVA+BaseAddr to VA
+		static String^ AddrConv::convRVA(String^ inputVA, String^ inputBaseAddr); // Converts hex in form of a String from VA+BaseAddr to RVA
+		static String^ convVA(String^ inputRVA, String^ inputBaseAddr); // Converts hex in form of a String from RVA+BaseAddr to VA
 	//private:
 	};
 }

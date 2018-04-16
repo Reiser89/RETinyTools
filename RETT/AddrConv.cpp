@@ -99,22 +99,18 @@ namespace RETT {
 		for (int i = 0; i < input->Length; i++)
 		{
 			c = input[input->Length - i - 1]; // get char of input in reversed order
-
 			pos = i; // Store 2 converted chars in one byte, adds 1 if odd strlen
 			pos -= pos % 2; // -1 if odd
 			pos /= 2;
 
 			// From ascii-able:
 			// 0 - 9 = 48...57  -> -48
-			// A - F = 65...70  -> -54
-			// a - f = 97...102 -> -86
+			// A - F = 65...70  -> -55
+			// a - f = 97...102 -> -87
 			tmp = c;
-			tmp -= c > 96 ? 86 : (c > 64 ? 54 : 48);
-			//hex[pos] = (i + odd) % 2 ? hex[pos] : tmp;
-			//hex[pos] += (i + odd) % 2 ? 0x10 * tmp : 0;
+			tmp -= c > 96 ? 87 : (c > 64 ? 55 : 48);
 			hex[pos] = (i) % 2 ? hex[pos] : tmp;
 			hex[pos] += (i) % 2 ? 0x10 * tmp : 0;
-			//retval += String::Format("{0:X}", input[i]);
 		}
 
 		return hex;
@@ -135,11 +131,10 @@ namespace RETT {
 			for (int pos = 0; pos < 2; pos++)
 			{
 				c = pos == 1 ? (hx & 0x0F) : ((hx & 0xF0) / 0x10);
-				//std::cout << (int)hx << " ";
 				// From ascii-able:
 				// 0 - 9 = 48...57  -> +48
-				// A - F = 65...70  -> +54
-				c += c > 9 ? 54 : 48;
+				// A - F = 65...70  -> +55
+				c += c > 9 ? 55 : 48;
 
 				// Do not add leading zero:
 				retval += (!first || c != 48) ? String::Format("{0}", c) : "";
@@ -150,61 +145,108 @@ namespace RETT {
 		return "0x" + retval;
 	}
 
-	String^ AddrConv::convRVA(String^ input)
+	std::vector<Byte> additionHex(std::vector<Byte> term0, std::vector<Byte> term1)
 	{
-		//String^ retval = nullptr;
-		//for each (Char ch in input) {
-		//	array<Byte>^ bytes = BitConverter::GetBytes(ch);
-		//	//array<Byte>^ bytes = BitConverter::GetBytes;
-		//	//retval += String::Format("{0:X2} {1:X2} ", bytes[1], bytes[0]);
-		//	retval += String::Format("{1:X2}", bytes[0]);
-		//}
-		//return retval;
+		std::vector<Byte> res;
+		int8_t carry = 0;
+		size_t size0 = term0.size(), size1 = term1.size();
+		size_t max_size = size0 > size1 ? size0 : size1;
+		res.resize(max_size);
 
+		// Byte-array's are little endian:
+		for (int i = 0; i < max_size; i++)
+		{
+			res[i] = res[i] > 0 ? res[i] : 0x00; // Preset result (to prevent losing carry)
+			res[i] += size0 > i ? (size1 > i ? (term0[i] + term1[i]) : term0[i]) : (size1 > i ? term1[i] : 0x0);
+			carry = size0 > i && size1 > i ? ((int16_t)(term0[i] + term1[i] + carry) > 0xff ? 1 : 0) : 0;
 
-		//double hex;
-		String^ input2 = input;
-
-		String^ retval = nullptr;
-		for each (Char ch in input) {
-			array<Byte>^ bytes = BitConverter::GetBytes(ch);
-			//	retval += String::Format("{0:X}", ch);
+			// Take carry from last operation
+			if (carry)
+			{
+				if ((i + 1) < max_size)
+				{
+					res[i + 1] = 0x01;
+				}
+				else
+				{
+					res.push_back(0x01); // Add a new value with the carry (if byte-array is not big enought).
+				}
+			}
 		}
-		//textBoxVA->Text = retval;
 
-		//array<Byte>^ bytes = { 0x0,0x1,0x2,0x3,0x4,0x5,0x6,0x7,0x8,0x9,0xa,0xb,0xc,0xd,0xe,0xf };
-		//array<Byte>^ bytes = { 0x11,0x22,0x33,0x44 };
-		//for each (Char ch in bytes) {
-		//for (int i = 0; (Char ch in hexFrom) {
-		//retval += String::Format("{0:X}", ch);
-		//retval += String::Format("{0}", ch);
-		//}
+		return res;
+	}
 
-		//std::vector<Byte> hex; // Technically we only use 4 bit
+	std::vector<Byte> subtractionHex(std::vector<Byte> minuend, std::vector<Byte> subtrahend)
+	{
+		std::vector<Byte> res;
+		int8_t carry = 0;
+		Byte result, subtract;
+		bool negative = false;
+		size_t size0 = minuend.size(), size1 = subtrahend.size();
+		size_t max_size = size0 > size1 ? size0 : size1;
 
-		//for (int i = 0; i < input->Length; i++)
-		//{
-		//	retval += String::Format("{0:X}", input[i]);
-		//}
-		//for each (Char ch in input) {
+		// Byte-array's are little endian:
+		for (int i = 0; i < max_size; i++)
+		{
+			result = size0 > i ? minuend[i] : 0x00; // temporary result value
+			subtract = size1 > i ? subtrahend[i] + carry : carry; // value to subtract if exists
+																  //negative = result < (subtract + carry) ? true : false;
+			carry = (result < subtract) || (carry && subtract == 0x00) ? 1 : 0;
+			result -= carry ? -0x100 + subtract : subtract; // Calculate
 
-		//	//retval += String::Format("{0:X}", ch);
-		//	//retval += String::Format("{0}", ch);
-		//}
+			if (size0 <= i && carry) // Check if result will get negative due to smaller minuend than subtrahend.
+			{
+				res.resize(1);
+				res[0] = 0x00;
+				return res;
+			}
 
-		std::vector<Byte> hex = getHexFromString(input);
-		retval = getStringFromHex(hex);
+			res.push_back(result);
+		}
 
-		//wchar_t buf[19];
-		//swprintf_s(buf, 19, L"0x%16llx", hex[0]);
-		//MessageBox(0, buf, L"Wrapper", 0);
+		if (carry) // Positive carry would mean, there is a residual value => result is negative.
+		{
+			res.resize(1);
+			res[0] = 0x00;
+			return res;
+		}
 
+		// clean leading zeros:
+		for (int i = res.size() - 1; i >= 0; i--)
+		{
+			if (res[i] == 0x00)
+				res.pop_back();
+			else
+				break;
+		}
+
+		return res;
+	}
+
+	String^ AddrConv::convRVA(String^ inputVA, String^ inputBaseAddr)
+	{
+		std::vector<Byte> hexVA = getHexFromString(inputVA);
+		std::vector<Byte> hexBaseAddr = getHexFromString(inputBaseAddr);
+
+		// RVA = VA - ImageBase
+		std::vector<Byte> hexResult = subtractionHex(hexVA, hexBaseAddr);
+
+		String^ retval = getStringFromHex(hexResult);
 
 		return retval;
 	}
 
-	String^ AddrConv::convVA(String^ input)
+	String^ AddrConv::convVA(String^ inputRVA, String^ inputBaseAddr)
 	{
-		return "";
+		std::vector<Byte> hexRVA = getHexFromString(inputRVA);
+		std::vector<Byte> hexBaseAddr = getHexFromString(inputBaseAddr);
+
+		// VA = RVA + ImageBase
+		std::vector<Byte> hexResult = additionHex(hexRVA, hexBaseAddr);
+
+		String^ retval = getStringFromHex(hexResult);
+
+		return retval;
 	}
 }

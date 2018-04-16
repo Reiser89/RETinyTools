@@ -40,8 +40,11 @@ namespace RETT {
 		protected:
 		private: System::Windows::Forms::Label^  label2;
 		private: System::Windows::Forms::Label^  label1;
-		private: System::Windows::Forms::Button^  buttonConvRVA;
-		private: System::Windows::Forms::Button^  buttonConvVA;
+	private: System::Windows::Forms::Button^  buttonConvVA;
+	private: System::Windows::Forms::Button^  buttonConvRVA;
+
+
+
 
 		private: System::Windows::Forms::TextBox^  textBoxImagebase;
 		private: System::Windows::Forms::TextBox^  textBoxRVA;
@@ -63,8 +66,8 @@ namespace RETT {
 			{
 				System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 				this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-				this->buttonConvRVA = (gcnew System::Windows::Forms::Button());
 				this->buttonConvVA = (gcnew System::Windows::Forms::Button());
+				this->buttonConvRVA = (gcnew System::Windows::Forms::Button());
 				this->textBoxImagebase = (gcnew System::Windows::Forms::TextBox());
 				this->textBoxRVA = (gcnew System::Windows::Forms::TextBox());
 				this->textBoxVA = (gcnew System::Windows::Forms::TextBox());
@@ -76,8 +79,8 @@ namespace RETT {
 				// 
 				// groupBox1
 				// 
-				this->groupBox1->Controls->Add(this->buttonConvRVA);
 				this->groupBox1->Controls->Add(this->buttonConvVA);
+				this->groupBox1->Controls->Add(this->buttonConvRVA);
 				this->groupBox1->Controls->Add(this->textBoxImagebase);
 				this->groupBox1->Controls->Add(this->textBoxRVA);
 				this->groupBox1->Controls->Add(this->textBoxVA);
@@ -85,42 +88,42 @@ namespace RETT {
 				this->groupBox1->Controls->Add(this->label3);
 				this->groupBox1->Controls->Add(this->label1);
 				this->groupBox1->Location = System::Drawing::Point(16, 15);
-				this->groupBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->groupBox1->Margin = System::Windows::Forms::Padding(4);
 				this->groupBox1->Name = L"groupBox1";
-				this->groupBox1->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->groupBox1->Padding = System::Windows::Forms::Padding(4);
 				this->groupBox1->Size = System::Drawing::Size(520, 121);
 				this->groupBox1->TabIndex = 0;
 				this->groupBox1->TabStop = false;
 				this->groupBox1->Text = L"Addresses";
 				// 
-				// buttonConvRVA
-				// 
-				this->buttonConvRVA->Enabled = false;
-				this->buttonConvRVA->Location = System::Drawing::Point(439, 85);
-				this->buttonConvRVA->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-				this->buttonConvRVA->Name = L"buttonConvRVA";
-				this->buttonConvRVA->Size = System::Drawing::Size(73, 28);
-				this->buttonConvRVA->TabIndex = 6;
-				this->buttonConvRVA->Text = L"/\\ Conv";
-				this->buttonConvRVA->UseVisualStyleBackColor = true;
-				this->buttonConvRVA->Click += gcnew System::EventHandler(this, &MainForm::buttonConvRVA_Click);
-				// 
 				// buttonConvVA
 				// 
 				this->buttonConvVA->Enabled = false;
-				this->buttonConvVA->Location = System::Drawing::Point(439, 53);
-				this->buttonConvVA->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->buttonConvVA->Location = System::Drawing::Point(439, 85);
+				this->buttonConvVA->Margin = System::Windows::Forms::Padding(4);
 				this->buttonConvVA->Name = L"buttonConvVA";
 				this->buttonConvVA->Size = System::Drawing::Size(73, 28);
-				this->buttonConvVA->TabIndex = 5;
-				this->buttonConvVA->Text = L"\\/ Conv";
+				this->buttonConvVA->TabIndex = 6;
+				this->buttonConvVA->Text = L"/\\ Conv";
 				this->buttonConvVA->UseVisualStyleBackColor = true;
 				this->buttonConvVA->Click += gcnew System::EventHandler(this, &MainForm::buttonConvVA_Click);
+				// 
+				// buttonConvRVA
+				// 
+				this->buttonConvRVA->Enabled = false;
+				this->buttonConvRVA->Location = System::Drawing::Point(439, 53);
+				this->buttonConvRVA->Margin = System::Windows::Forms::Padding(4);
+				this->buttonConvRVA->Name = L"buttonConvRVA";
+				this->buttonConvRVA->Size = System::Drawing::Size(73, 28);
+				this->buttonConvRVA->TabIndex = 5;
+				this->buttonConvRVA->Text = L"\\/ Conv";
+				this->buttonConvRVA->UseVisualStyleBackColor = true;
+				this->buttonConvRVA->Click += gcnew System::EventHandler(this, &MainForm::buttonConvRVA_Click);
 				// 
 				// textBoxImagebase
 				// 
 				this->textBoxImagebase->Location = System::Drawing::Point(219, 23);
-				this->textBoxImagebase->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->textBoxImagebase->Margin = System::Windows::Forms::Padding(4);
 				this->textBoxImagebase->Name = L"textBoxImagebase";
 				this->textBoxImagebase->Size = System::Drawing::Size(211, 22);
 				this->textBoxImagebase->TabIndex = 1;
@@ -132,7 +135,7 @@ namespace RETT {
 				// textBoxRVA
 				// 
 				this->textBoxRVA->Location = System::Drawing::Point(219, 87);
-				this->textBoxRVA->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->textBoxRVA->Margin = System::Windows::Forms::Padding(4);
 				this->textBoxRVA->Name = L"textBoxRVA";
 				this->textBoxRVA->Size = System::Drawing::Size(211, 22);
 				this->textBoxRVA->TabIndex = 3;
@@ -143,7 +146,7 @@ namespace RETT {
 				// textBoxVA
 				// 
 				this->textBoxVA->Location = System::Drawing::Point(219, 55);
-				this->textBoxVA->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->textBoxVA->Margin = System::Windows::Forms::Padding(4);
 				this->textBoxVA->Name = L"textBoxVA";
 				this->textBoxVA->Size = System::Drawing::Size(211, 22);
 				this->textBoxVA->TabIndex = 2;
@@ -189,7 +192,7 @@ namespace RETT {
 				this->Controls->Add(this->groupBox1);
 				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 				this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-				this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+				this->Margin = System::Windows::Forms::Padding(4);
 				this->Name = L"MainForm";
 				this->Text = L"RE Tiny Tools - (c) 2018, Reiser";
 				this->groupBox1->ResumeLayout(false);
@@ -219,38 +222,38 @@ namespace RETT {
 			this->textBoxImagebase->SelectionStart = this->textBoxImagebase->Text->Length;
 			}*/
 
-			this->buttonConvVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text) &&
-				AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text);
 			this->buttonConvRVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text) &&
+				AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text);
+			this->buttonConvVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxRVA->Text);
 		}
 		private: System::Void textBoxVA_TextChanged(System::Object^  sender, System::EventArgs^  e)
 		{
-			//AddrConv::textFieldHexTextChanged(this->textBoxVA);
-			this->buttonConvVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text) &&
+			AddrConv::textFieldHexTextChanged(this->textBoxVA);
+			this->buttonConvRVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
 		private: System::Void textBoxRVA_TextChanged(System::Object^  sender, System::EventArgs^  e)
 		{
 			AddrConv::textFieldHexTextChanged(this->textBoxRVA);
-			this->buttonConvRVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxRVA->Text) &&
+			this->buttonConvVA->Enabled = AddrConv::checkHexFormatOnChangeUsable(this->textBoxRVA->Text) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
 		private: System::Void textBoxImagebase_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
-			this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxImagebase) &&
-				AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text);
 			this->buttonConvRVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxImagebase) &&
+				AddrConv::checkHexFormatOnChangeUsable(this->textBoxVA->Text);
+			this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxImagebase) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxRVA->Text);
 		}
 		private: System::Void textBoxVA_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
-			//this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxVA) &&
-			//	AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
+			this->buttonConvRVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxVA) &&
+				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
 		private: System::Void textBoxRVA_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
-			this->buttonConvRVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxRVA) &&
+			this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxRVA) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
 		}
 		private: System::Void textBoxImagebase_Click(System::Object^  sender, System::EventArgs^  e)
@@ -265,13 +268,13 @@ namespace RETT {
 		{
 			this->textBoxVA->SelectAll();
 		}
-		private: System::Void buttonConvVA_Click(System::Object^  sender, System::EventArgs^  e)
-		{
-			textBoxVA->Text = AddrConv::convRVA(textBoxImagebase->Text);
-		}
 		private: System::Void buttonConvRVA_Click(System::Object^  sender, System::EventArgs^  e)
 		{
-
+			textBoxRVA->Text = AddrConv::convRVA(textBoxVA->Text, textBoxImagebase->Text);
+		}
+		private: System::Void buttonConvVA_Click(System::Object^  sender, System::EventArgs^  e)
+		{
+			textBoxVA->Text = AddrConv::convVA(textBoxRVA->Text, textBoxImagebase->Text);
 		}
 };
 }
