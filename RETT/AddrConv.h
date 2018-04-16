@@ -16,6 +16,7 @@ namespace RETT {
 		static bool textFieldHexTextChanged(System::Windows::Forms::TextBox ^textBox); // Handles Hex-TextBox on TextChange
 		static String^ convRVA(String^ input); // Converts hex in form of a String from VA+BaseAddr to RVA
 		static String^ convVA(String^ input); // Converts hex in form of a String from RVA+BaseAddr to VA
+	//private:
 	};
 }
 

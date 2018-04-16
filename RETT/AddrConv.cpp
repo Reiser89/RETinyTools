@@ -95,10 +95,12 @@ namespace RETT {
 		int pos;
 		Byte tmp;
 		short odd = input->Length % 2; // Importaint on odd hex-values like: 0x123 (to not get 0x1230)
+									   //for (int i = input->Length, n = 0; i >= 0; i--, n++) // i counts down to select char in input, n counts up for pos-index
 		for (int i = 0; i < input->Length; i++)
 		{
-			c = input[i];
-			pos = i + odd; // Store 2 converted chars in one byte, adds 1 if odd strlen
+			c = input[input->Length - i - 1]; // get char of input in reversed order
+
+			pos = i; // Store 2 converted chars in one byte, adds 1 if odd strlen
 			pos -= pos % 2; // -1 if odd
 			pos /= 2;
 
@@ -108,8 +110,10 @@ namespace RETT {
 			// a - f = 97...102 -> -86
 			tmp = c;
 			tmp -= c > 96 ? 86 : (c > 64 ? 54 : 48);
-			hex[pos] = (i + odd) % 2 ? hex[pos] : tmp;
-			hex[pos] += (i + odd) % 2 ? 0x10 * tmp : 0;
+			//hex[pos] = (i + odd) % 2 ? hex[pos] : tmp;
+			//hex[pos] += (i + odd) % 2 ? 0x10 * tmp : 0;
+			hex[pos] = (i) % 2 ? hex[pos] : tmp;
+			hex[pos] += (i) % 2 ? 0x10 * tmp : 0;
 			//retval += String::Format("{0:X}", input[i]);
 		}
 
@@ -122,12 +126,16 @@ namespace RETT {
 
 		Char c;
 		int pos;
-		Byte tmp;
+		Byte hx;
 		bool first = true;
-		for each (Byte hx in input) {
+		//for each (Byte hx in input) {
+		for (int i = 0; i < input.size(); i++)
+		{
+			hx = input[input.size() - i - 1];  // Get hex numbers in reverse order
 			for (int pos = 0; pos < 2; pos++)
 			{
-				c = pos == 0 ? (hx & 0x0F) : ((hx & 0xF0) / 0x10);
+				c = pos == 1 ? (hx & 0x0F) : ((hx & 0xF0) / 0x10);
+				//std::cout << (int)hx << " ";
 				// From ascii-able:
 				// 0 - 9 = 48...57  -> +48
 				// A - F = 65...70  -> +54
