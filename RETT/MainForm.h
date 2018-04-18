@@ -87,11 +87,9 @@ namespace RETT {
 				this->groupBox1->Controls->Add(this->label2);
 				this->groupBox1->Controls->Add(this->label3);
 				this->groupBox1->Controls->Add(this->label1);
-				this->groupBox1->Location = System::Drawing::Point(16, 15);
-				this->groupBox1->Margin = System::Windows::Forms::Padding(4);
+				this->groupBox1->Location = System::Drawing::Point(12, 12);
 				this->groupBox1->Name = L"groupBox1";
-				this->groupBox1->Padding = System::Windows::Forms::Padding(4);
-				this->groupBox1->Size = System::Drawing::Size(520, 121);
+				this->groupBox1->Size = System::Drawing::Size(390, 98);
 				this->groupBox1->TabIndex = 0;
 				this->groupBox1->TabStop = false;
 				this->groupBox1->Text = L"Addresses";
@@ -99,10 +97,9 @@ namespace RETT {
 				// buttonConvVA
 				// 
 				this->buttonConvVA->Enabled = false;
-				this->buttonConvVA->Location = System::Drawing::Point(439, 85);
-				this->buttonConvVA->Margin = System::Windows::Forms::Padding(4);
+				this->buttonConvVA->Location = System::Drawing::Point(329, 69);
 				this->buttonConvVA->Name = L"buttonConvVA";
-				this->buttonConvVA->Size = System::Drawing::Size(73, 28);
+				this->buttonConvVA->Size = System::Drawing::Size(55, 23);
 				this->buttonConvVA->TabIndex = 6;
 				this->buttonConvVA->Text = L"/\\ Conv";
 				this->buttonConvVA->UseVisualStyleBackColor = true;
@@ -111,10 +108,9 @@ namespace RETT {
 				// buttonConvRVA
 				// 
 				this->buttonConvRVA->Enabled = false;
-				this->buttonConvRVA->Location = System::Drawing::Point(439, 53);
-				this->buttonConvRVA->Margin = System::Windows::Forms::Padding(4);
+				this->buttonConvRVA->Location = System::Drawing::Point(329, 43);
 				this->buttonConvRVA->Name = L"buttonConvRVA";
-				this->buttonConvRVA->Size = System::Drawing::Size(73, 28);
+				this->buttonConvRVA->Size = System::Drawing::Size(55, 23);
 				this->buttonConvRVA->TabIndex = 5;
 				this->buttonConvRVA->Text = L"\\/ Conv";
 				this->buttonConvRVA->UseVisualStyleBackColor = true;
@@ -122,10 +118,10 @@ namespace RETT {
 				// 
 				// textBoxImagebase
 				// 
-				this->textBoxImagebase->Location = System::Drawing::Point(219, 23);
-				this->textBoxImagebase->Margin = System::Windows::Forms::Padding(4);
+				this->textBoxImagebase->Location = System::Drawing::Point(164, 19);
+				this->textBoxImagebase->MaxLength = 128;
 				this->textBoxImagebase->Name = L"textBoxImagebase";
-				this->textBoxImagebase->Size = System::Drawing::Size(211, 22);
+				this->textBoxImagebase->Size = System::Drawing::Size(159, 20);
 				this->textBoxImagebase->TabIndex = 1;
 				this->textBoxImagebase->Text = L"0x400000";
 				this->textBoxImagebase->Click += gcnew System::EventHandler(this, &MainForm::textBoxImagebase_Click);
@@ -134,10 +130,10 @@ namespace RETT {
 				// 
 				// textBoxRVA
 				// 
-				this->textBoxRVA->Location = System::Drawing::Point(219, 87);
-				this->textBoxRVA->Margin = System::Windows::Forms::Padding(4);
+				this->textBoxRVA->Location = System::Drawing::Point(164, 71);
+				this->textBoxRVA->MaxLength = 128;
 				this->textBoxRVA->Name = L"textBoxRVA";
-				this->textBoxRVA->Size = System::Drawing::Size(211, 22);
+				this->textBoxRVA->Size = System::Drawing::Size(159, 20);
 				this->textBoxRVA->TabIndex = 3;
 				this->textBoxRVA->Click += gcnew System::EventHandler(this, &MainForm::textBoxRVA_Click);
 				this->textBoxRVA->TextChanged += gcnew System::EventHandler(this, &MainForm::textBoxRVA_TextChanged);
@@ -145,10 +141,10 @@ namespace RETT {
 				// 
 				// textBoxVA
 				// 
-				this->textBoxVA->Location = System::Drawing::Point(219, 55);
-				this->textBoxVA->Margin = System::Windows::Forms::Padding(4);
+				this->textBoxVA->Location = System::Drawing::Point(164, 45);
+				this->textBoxVA->MaxLength = 128;
 				this->textBoxVA->Name = L"textBoxVA";
-				this->textBoxVA->Size = System::Drawing::Size(211, 22);
+				this->textBoxVA->Size = System::Drawing::Size(159, 20);
 				this->textBoxVA->TabIndex = 2;
 				this->textBoxVA->Click += gcnew System::EventHandler(this, &MainForm::textBoxVA_Click);
 				this->textBoxVA->TextChanged += gcnew System::EventHandler(this, &MainForm::textBoxVA_TextChanged);
@@ -157,42 +153,38 @@ namespace RETT {
 				// label2
 				// 
 				this->label2->AutoSize = true;
-				this->label2->Location = System::Drawing::Point(8, 59);
-				this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				this->label2->Location = System::Drawing::Point(6, 48);
 				this->label2->Name = L"label2";
-				this->label2->Size = System::Drawing::Size(140, 17);
+				this->label2->Size = System::Drawing::Size(103, 13);
 				this->label2->TabIndex = 0;
 				this->label2->Text = L"VA (Virtual Address):";
 				// 
 				// label3
 				// 
 				this->label3->AutoSize = true;
-				this->label3->Location = System::Drawing::Point(8, 27);
-				this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				this->label3->Location = System::Drawing::Point(6, 22);
 				this->label3->Name = L"label3";
-				this->label3->Size = System::Drawing::Size(81, 17);
+				this->label3->Size = System::Drawing::Size(62, 13);
 				this->label3->TabIndex = 0;
 				this->label3->Text = L"Imagebase:";
 				// 
 				// label1
 				// 
 				this->label1->AutoSize = true;
-				this->label1->Location = System::Drawing::Point(8, 91);
-				this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+				this->label1->Location = System::Drawing::Point(6, 74);
 				this->label1->Name = L"label1";
-				this->label1->Size = System::Drawing::Size(205, 17);
+				this->label1->Size = System::Drawing::Size(153, 13);
 				this->label1->TabIndex = 0;
 				this->label1->Text = L"RVA (Relative Virtual Address):";
 				// 
 				// MainForm
 				// 
-				this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+				this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-				this->ClientSize = System::Drawing::Size(552, 150);
+				this->ClientSize = System::Drawing::Size(414, 122);
 				this->Controls->Add(this->groupBox1);
 				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
 				this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-				this->Margin = System::Windows::Forms::Padding(4);
 				this->Name = L"MainForm";
 				this->Text = L"RE Tiny Tools - (c) 2018, Reiser";
 				this->groupBox1->ResumeLayout(false);
