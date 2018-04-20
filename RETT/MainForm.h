@@ -242,11 +242,17 @@ namespace RETT {
 		{
 			this->buttonConvRVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxVA) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
+
+			if (this->buttonConvRVA->Enabled)
+				buttonConvRVA_Click(sender, e);
 		}
 		private: System::Void textBoxRVA_Leave(System::Object^  sender, System::EventArgs^  e)
 		{
 			this->buttonConvVA->Enabled = AddrConv::textFieldHexLeave(this->textBoxRVA) &&
 				AddrConv::checkHexFormatOnChangeUsable(this->textBoxImagebase->Text);
+
+			if (this->buttonConvVA->Enabled)
+				buttonConvVA_Click(sender, e);
 		}
 		private: System::Void textBoxImagebase_Click(System::Object^  sender, System::EventArgs^  e)
 		{
